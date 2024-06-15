@@ -1,0 +1,8 @@
+runtime: nodejs
+env: flex
+
+# Optional: Custom startup command if different from the default "npm start"
+entrypoint: npm start
+
+manual_scaling:
+  instances: 1
