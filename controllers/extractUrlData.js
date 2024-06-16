@@ -8,13 +8,14 @@ async function extractUrlData(url) {
     await page.goto(url, { waitUntil: 'domcontentloaded' })
 
     const text = await page.evaluate(() => {
+      // only extract text
       const bodyText = document.body.innerText
+
       return bodyText.replace(/\s+/g, ' ').trim()
     })
 
     return text
   } catch (error) {
-    console.error(`Error scraping the website: ${error}`)
     return ''
   } finally {
     await browser.close()
