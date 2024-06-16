@@ -11,7 +11,8 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-22.04
-
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
