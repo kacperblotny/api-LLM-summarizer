@@ -1,8 +1,17 @@
 const express = require('express')
-const rateLimit = require('express-rate-limit')
 const app = express()
 
+const rateLimit = require('express-rate-limit')
+const helmet = require('helmet')
+const xss = require('xss-clean')
+
 const PORT = process.env.PORT || 8080
+
+// set security headers
+app.use(helmet())
+
+// prevent xss attacks
+app.use(xss())
 
 // rate limiting, 100 requests per 5min per ip
 const limiter = rateLimit({

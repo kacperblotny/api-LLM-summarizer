@@ -1,7 +1,7 @@
 const { extractUrlData } = require('../controllers/extractUrlData')
-const puppeteer = require('puppeteer')
+const { chromium } = require('playwright')
 
-jest.mock('puppeteer')
+jest.mock('playwright')
 
 describe('extractUrlData', () => {
   let mockPage
@@ -17,7 +17,7 @@ describe('extractUrlData', () => {
       close: jest.fn(),
     }
 
-    puppeteer.launch.mockResolvedValue(mockBrowser)
+    chromium.launch.mockResolvedValue(mockBrowser)
   })
 
   afterEach(() => {
@@ -34,7 +34,7 @@ describe('extractUrlData', () => {
 
     // assertions
     expect(result).toBe(mockText)
-    expect(puppeteer.launch).toHaveBeenCalledTimes(1)
+    expect(chromium.launch).toHaveBeenCalledTimes(1)
     expect(mockBrowser.newPage).toHaveBeenCalledTimes(1)
     expect(mockPage.goto).toHaveBeenCalledWith(mockUrl, {
       waitUntil: 'domcontentloaded',
@@ -53,7 +53,7 @@ describe('extractUrlData', () => {
 
     // assertions
     expect(result).toBe('')
-    expect(puppeteer.launch).toHaveBeenCalledTimes(1)
+    expect(chromium.launch).toHaveBeenCalledTimes(1)
     expect(mockBrowser.newPage).toHaveBeenCalledTimes(1)
     expect(mockPage.goto).toHaveBeenCalledWith(mockUrl, {
       waitUntil: 'domcontentloaded',
