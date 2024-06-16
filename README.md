@@ -1,6 +1,21 @@
 # Get summarized article
 
-This API lets you send a POST request with parameters and get a summarized article from provided link
+This API lets you send a POST request with parameters and get a summarized article from provided link  
+
+## Run the program locally
+
+```
+npm i  
+
+npm start  
+```
+## Run tests
+
+```
+npm i  
+
+npm test  
+```
 
 ## Base URL
 
